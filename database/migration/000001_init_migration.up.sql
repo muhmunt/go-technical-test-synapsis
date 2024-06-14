@@ -2,7 +2,7 @@ CREATE TABLE users
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(255),
-    email       VARCHAR(50) NOT NULL,
+    username    VARCHAR(50) NOT NULL,
     password    TEXT NOT NULL,
     role        VARCHAR(50) NOT NULL,
     created_at  INT NOT NULL,

@@ -1,7 +1,7 @@
 package server
 
 import (
-	"fmt"
+	"go-technical-test-synapsis/src/web/routes"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -15,6 +15,7 @@ func Run(db *gorm.DB) {
 
 	api := router.Group("/api")
 
-	fmt.Print(api)
+	routes.SetupUserRoutes(api, db)
+
 	router.Run(":" + port)
 }

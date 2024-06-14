@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	db "go-technical-test-synopsis/database"
-	"go-technical-test-synopsis/src/web/server"
+	db "go-technical-test-synapsis/database"
+	"go-technical-test-synapsis/src/web/server"
 	"log"
 	"os"
 
