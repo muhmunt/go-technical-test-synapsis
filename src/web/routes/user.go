@@ -3,6 +3,7 @@ package routes
 import (
 	"go-technical-test-synapsis/src/handler"
 	"go-technical-test-synapsis/src/middleware"
+	"go-technical-test-synapsis/src/product"
 	"go-technical-test-synapsis/src/repository"
 	"go-technical-test-synapsis/src/user"
 
@@ -23,4 +24,9 @@ func SetupUserRoutes(r *gin.RouterGroup, db *gorm.DB) {
 
 	userHandler := handler.NewUser(userService)
 	userHandler.Mount(routeAuth)
+
+	productRepository := repository.NewProduct(db)
+	productService := product.NewService(productRepository)
+	productHandler := handler.NewProduct(productService)
+	productHandler.CustomerMount(routeUser)
 }

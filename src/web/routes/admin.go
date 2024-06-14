@@ -1,7 +1,9 @@
 package routes
 
 import (
+	"go-technical-test-synapsis/src/handler"
 	"go-technical-test-synapsis/src/middleware"
+	"go-technical-test-synapsis/src/product"
 	"go-technical-test-synapsis/src/repository"
 	"go-technical-test-synapsis/src/user"
 
@@ -19,4 +21,8 @@ func SetupAdminRoutes(r *gin.RouterGroup, db *gorm.DB) {
 	// authorization
 	routeAdmin.Use(middleware.Authorization(userService, "ADMIN"))
 
+	productRepository := repository.NewProduct(db)
+	productService := product.NewService(productRepository)
+	productHandler := handler.NewProduct(productService)
+	productHandler.Mount(routeAdmin)
 }

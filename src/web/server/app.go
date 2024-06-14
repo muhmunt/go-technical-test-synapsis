@@ -16,6 +16,7 @@ func Run(db *gorm.DB) {
 	api := router.Group("/api")
 
 	routes.SetupUserRoutes(api, db)
+	routes.SetupAdminRoutes(api, db)
 
 	router.Run(":" + port)
 }
