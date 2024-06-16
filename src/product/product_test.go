@@ -144,7 +144,7 @@ func TestUpdateProduct(t *testing.T) {
 		1: testProduct,
 	}
 
-	// Test UpdateProduct method with correct seller ID
+	// Test UpdateProduct method with correct ID
 	updateRequest := ProductRequest{
 		Name:        "Updated Product",
 		Price:       60000,
@@ -158,10 +158,10 @@ func TestUpdateProduct(t *testing.T) {
 		t.Errorf("Expected updated product name %s, got %s", updateRequest.Name, updatedProduct.ProductName)
 	}
 
-	// Test UpdateProduct method with incorrect seller ID
+	// Test UpdateProduct method with incorrect ID
 	_, err = service.UpdateProduct(ProductIDRequest{ID: 1}, updateRequest)
 	if err == nil {
-		t.Errorf("Expected error for unauthorized seller update")
+		t.Errorf("Expected error for unauthorized update")
 	}
 }
 

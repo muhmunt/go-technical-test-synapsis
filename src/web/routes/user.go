@@ -4,6 +4,7 @@ import (
 	"go-technical-test-synapsis/src/cart"
 	"go-technical-test-synapsis/src/handler"
 	"go-technical-test-synapsis/src/middleware"
+	"go-technical-test-synapsis/src/order"
 	"go-technical-test-synapsis/src/product"
 	"go-technical-test-synapsis/src/repository"
 	"go-technical-test-synapsis/src/user"
@@ -36,4 +37,10 @@ func SetupUserRoutes(r *gin.RouterGroup, db *gorm.DB) {
 	cartService := cart.NewService(cartRepository, cartItemsRepository)
 	cartHandler := handler.NewCart(cartService)
 	cartHandler.Mount(routeUser)
+
+	orderRepository := repository.NewOrder(db)
+	orderItemsRepository := repository.NewOrderItems(db)
+	orderService := order.NewService(orderRepository, cartItemsRepository, orderItemsRepository)
+	orderHandler := handler.NewOrder(orderService)
+	orderHandler.Mount(routeUser)
 }
